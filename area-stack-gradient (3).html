@@ -1,0 +1,121 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=area-stack-gradient&code=PYBwLglsB2AEC8sDeAoWsDGwA2wBOAXLANoDkAxABwAMAYrQIICspANLBddQCLf1sdyAZgDsDAEz92Fel0oiBM2gCFaXUgF1WaWGGA5IIIqnToweCAHNLAU0IcAhgA8IAZzY70ztwAVgEaDA7Y09TMABPEBsiUgw8YFd3bVNTbAcAIxtsEJSU9IcMAGtLeIBXaAATAGEcfBjyADYHEQBOShZQ9ABfUJ7u5NhsG1tKnNMKhzAHIjJNHS6BvRx04Ccx9AAzG0nSvGjkTthXBwA3GwZXAEkAWwdbYz7TR4WdEogK9cGbDbAYoQBSDwpCyWAAWvw4ABZAQN0CswHprn8YaEsIEHAEADIZLJEcylGzzAZOBguVwzUImXIRKIxDCTYb4cJA3IrcoTPDhADiDiMsA2DmwrhssPGk2mJFI1CYAHpxOJFNK5UJFbLxJDVXKWNIleIGprxAodWrKKRDsa5S1NUJqNaAIyKhoy6gOnVO6gKt3OlVe6ga33ajjUd3630KDS9HRaHThUluCkpKkpGn7UgnQUEs0pR7R9DCiw2ckkSmHaAOa6plnJyKp7ABGxV0yuKZFGIAFWAU2wjbz130YFBeLwBNF6Dr0BsAGUIkNPikAO7vAdEaiHF65I6g4Dzyfha4rbL8wXC0ewBx7BzT8Kzg4b9CgAoQCIrgB0lFP6CwuHsE_nsBsGCgueYCuC-JS8qCEAYC-mL1ueXJ4A4FQQDYgQABTUOwmGwNhdrsMQhyJoRuTABsGzChCmHESkX51BweCWOkGHsJQ4jsOIdoiAAlFmd79NRt58aYpHkTYEJ4QJn61PYpAMUx6rYeqQjsUwkI8QJjwbhoXFrqeNjXCAQGuPGgkbhswAYKURakPmKHuLphwTFMMx2pCilCGxsB2i67ENJC7AtLhTCKcFrB2qprDqkwYUNC0YWQu-HENJFkLJd5mHhf5dqUHF4UtBG2aihoXQANxAA
+	⚠ 请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://echarts.apache.org/zh/js/vendors/echarts-gl/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://echarts.apache.org/zh/js/vendors/echarts-stat/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-graph-modularity extension
+  <script type="text/javascript" src="https://echarts.apache.org/zh/js/vendors/echarts-graph-modularity/dist/echarts-graph-modularity.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    option = {
+  color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'cross',
+      label: {
+        backgroundColor: '#6a7985'
+      }
+    }
+  },
+  legend: {
+    data: ['']
+  },
+  toolbox: {
+    feature: {
+      saveAsImage: {}
+    }
+  },
+  grid: {
+    left: '3%',
+    right: '4%',
+    bottom: '3%',
+    containLabel: true
+  },
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      data: ['05/22', '05/23', '05/24', '05/25', '05/26', '05/27', '05/28'
+      , '05/29', '05/30', '05/31', '06/01', '06/02', '06/03', '06/04', '06/05', '06/06', '06/07']
+    }
+  ],
+  yAxis: [
+    {
+      type: 'value'
+    }
+  ],
+  series: [
+    {
+      name: '',
+      type: 'line',
+      stack: 'Total',
+      smooth: true,
+      lineStyle: {
+        width: 0
+      },
+      showSymbol: false,
+      areaStyle: {
+        opacity: 0.8,
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          {
+            offset: 0,
+            color: 'rgb(0, 82, 217)'
+          },
+          {
+            offset: 1,
+            color: 'rgb(240, 243, 254)'
+          }
+        ])
+      },
+      emphasis: {
+        focus: 'series'
+      },
+      data: [140, 232, 101, 264, 90, 150, 250,154,245,169,148,216,246,100,154,189,159]
+    },
+    ]};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
